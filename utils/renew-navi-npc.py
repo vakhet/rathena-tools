@@ -1,4 +1,4 @@
-# Version 0.2
+# Version 0.1
 
 import re, os, sqlite3, random
 
