@@ -1,4 +1,4 @@
-Utilities for Ragnarok server application
+Utilities for Ragnarok rAthena server/client applications
  
 If you have an idea for script/app - please contact me!
 
