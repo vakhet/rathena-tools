@@ -1,14 +1,30 @@
-# Version 0.1
+#        Name : renew-navi-npc.py
+#      Author : vakhet at gmail.com
+#     Version : 0.2
+# Description :
+#
+# This script gets all your NPC names from the original rAthena folder 
+# and updates their lines in navi_npc_krpri.lub wherever matches the map_name and coords
 
 import re, os, sqlite3, random
 
 NPC_match = '^[\w\d_]+,\d+,\d+,\d+\tscript\t[\w\d_ -]+#*[\w\d_ -]*\t[\d,{]+$'
-log = open('log.txt', 'w', errors='ignore')
-conn = sqlite3.connect('db')
-db = conn.cursor()
-path_rathena = ''
-path_navi = ''
 allfiles = []
+log = open('result.log', 'w', errors='ignore')
+conn = sqlite3.connect('db.sqlite')
+db = conn.cursor()
+
+intro = '''
+Renew navi_npc_krpri.lub | Version 0.2 | (C) 2017 vakhet @ gmail.com
+
+Changes:
+  v0.2 - *.new file now creates in same folder with original *.lub
+'''
+
+outro = '''
+Check results in result.log
+NEW file generated: navi_npc_krpri.new
+'''
 
 db.executescript('''
 DROP TABLE IF EXISTS npc;
@@ -97,7 +113,7 @@ def stage_3():
 
 
 def stage_4():
-    file = open('navi_npc_krpri.new', 'w', errors='ignore')
+    file = open(path_navi+'navi_npc_krpri.new', 'w', errors='ignore')
     file.writelines('Navi_Npc = {\n')
     sql = db.execute('SELECT * FROM npc WHERE thing1<>0 ORDER BY map, thing1')
     for row in sql:
@@ -113,6 +129,9 @@ def stage_4():
     file.writelines('\t{ "NULL", 0, 0, 0, "", "", 0, 0 }\n}\n\n')
     file.close()
 
+# Script begins here
+print(intro)
+
 while True:
     path_rathena = input('Enter path to NPC: ')
     if not os.path.exists(path_rathena):
@@ -127,7 +146,7 @@ while True:
         continue
     else: break
 
-stage_1()   #scan for *.txt
+stage_1()   #scan for *.txt in \npc directory
 stage_2()   #build DB from navi_npc_krpri.lub
 stage_3()   #update NPC names in DB from *.txt
 stage_4()   #building navi_npc_krpri.new
