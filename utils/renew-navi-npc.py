@@ -4,9 +4,13 @@
 # Description :
 #
 # This script gets all your NPC names from the original rAthena folder 
-# and updates their lines in navi_npc_krpri.lub wherever matches the map_name and coords
+# and updates their lines in navi_npc_krpri.lub
+# wherever matches the map_name and coords
 
-import re, os, sqlite3, random
+import re
+import os
+import random
+import sqlite3
 
 NPC_match = '^[\w\d_]+,\d+,\d+,\d+\tscript\t[\w\d_ -]+#*[\w\d_ -]*\t[\d,{]+$'
 allfiles = []
@@ -42,20 +46,22 @@ CREATE TABLE npc (
 )
 ''')
 
+
 def parse_npc(line):
     ln = line.split(',')
-    map, x , y = ln[0], int(ln[1]), int(ln[2])
+    map_name, x, y = ln[0], int(ln[1]), int(ln[2])
     fullname = ln[3].split('\t')
     fullname = fullname[2]
-    if re.search('#', fullname) :
+    if re.search('#', fullname):
         ln = fullname.split('#')
         name = ln[0]
         shadow = ln[1]
-        #print(line,'\n',shadow,'<\n=====')
+        # print(line,'\n',shadow,'<\n=====')
     else:
         name = fullname
         shadow = ''
-    return (name, map, x, y, shadow)
+    return name, map_name, x, y, shadow
+
 
 def parse_navi(line):
     line = re.sub('^.*{\s*', '', line)
@@ -65,9 +71,10 @@ def parse_navi(line):
         line[i] = re.sub('"', '', line[i], count=2)
         try:
             line[i] = int(line[i])
-        except:
+        except ValueError:
             pass
     return tuple(line)
+
 
 def stage_1():
     for root, dirs, files in os.walk(path_rathena):
@@ -76,33 +83,40 @@ def stage_1():
                 line = os.path.join(root, file)
                 allfiles.append(line)
 
+
 def stage_2():
     fh = open(path_navi+'\\navi_npc_krpri.lub', 'r', errors='ignore')
     for line in fh.readlines():
         navi = parse_navi(line)
-        if len(navi) != 8 : continue
+        if len(navi) != 8:
+            continue
         db.execute('''INSERT INTO npc 
             (map, thing1, thing2, thing3, name, shadow, x, y) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)''', navi)
     conn.commit()
     fh.close()
 
+
 def stage_3():
     total, updated = 0, 0
     print('Working... ', end='')
     for file in allfiles:
         fh = open(file, 'r', errors='ignore')
-        for line in fh.readlines() :
+        for line in fh.readlines():
             print('\b'+chr(random.randint(65, 122)), end='')
-            if re.match(NPC_match, line) == None : continue
+            if re.match(NPC_match, line) is None:
+                continue
             npc = parse_npc(line)
             total = total + 1
             db.execute('''SELECT COUNT(id), id, name, map, x, y, shadow FROM npc 
-                WHERE map=? AND x=? AND y=?''', (npc[1], npc[2], npc[3]) )
+                WHERE map=? AND x=? AND y=?''', (npc[1], npc[2], npc[3]))
             sql = db.fetchone()
-            if sql[0] == 0 or (sql[2] == npc[0] and sql[6] == npc[4]): continue
-            log.writelines('('+sql[3]+','+str(sql[4])+','+str(sql[5])+') '+sql[2]+' -> '+npc[0]+'#'+npc[4]+'\n')
-            db.execute('UPDATE npc SET name=?, shadow=? WHERE id=?', (npc[0], npc[4], sql[1]) )
+            if sql[0] == 0 or (sql[2] == npc[0] and sql[6] == npc[4]):
+                continue
+            log.writelines('({},{},{}) {} -> {}#{}\n'.format(
+                sql[3], str(sql[4]), str(sql[5]), sql[2], npc[0], npc[4]))
+            db.execute('UPDATE npc SET name=?, shadow=? WHERE id=?',
+                       (npc[0], npc[4], sql[1]))
             conn.commit()
             updated += 1
         fh.close()
@@ -119,17 +133,20 @@ def stage_4():
     for row in sql:
         line = '\t{ '
         for i in range(1, 9):
-            try: item = str(row[i])
-            except: pass
+            try:
+                item = str(row[i])
+            except (ValueError, TypeError):
+                pass
             if i in (1, 5, 6):
-                item = '"' + row[i] + '"'
+                item = '"{}"'.format(row[i])
             line += item + ', '
         line = line[:-2] + ' },\n'
         file.writelines(line)
     file.writelines('\t{ "NULL", 0, 0, 0, "", "", 0, 0 }\n}\n\n')
     file.close()
 
-# Script begins here
+
+# The Beginning
 print(intro)
 
 while True:
@@ -137,19 +154,21 @@ while True:
     if not os.path.exists(path_rathena):
         print('Wrong path!\n\n')
         continue
-    else: break
+    else:
+        break
 
 while True:
     path_navi = input('Enter path to navi_npc_krpri.lub: ')
     if not os.path.exists(path_navi+'\\navi_npc_krpri.lub'):
         print('Wrong path!\n\n')
         continue
-    else: break
+    else:
+        break
 
-stage_1()   #scan for *.txt in \npc directory
-stage_2()   #build DB from navi_npc_krpri.lub
-stage_3()   #update NPC names in DB from *.txt
-stage_4()   #building navi_npc_krpri.new
+stage_1()   # scan for *.txt in \npc directory
+stage_2()   # build DB from navi_npc_krpri.lub
+stage_3()   # update NPC names in DB from *.txt
+stage_4()   # building navi_npc_krpri.new
 
 print('Complete list of changes see in log.txt')
 print('NEW file generated: navi_npc_krpri.new')
