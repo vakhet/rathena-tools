@@ -1,18 +1,17 @@
-#        Name : renew-navi-npc.py
-#      Author : vakhet at gmail.com
-#     Version : 0.2
-# Description :
-#
-# This script gets all your NPC names from the original rAthena folder 
-# and updates their lines in navi_npc_krpri.lub
-# wherever matches the map_name and coords
+"""
+    Author : vakhet at gmail.com
+
+This script gets all your NPC names from the original rAthena folder
+and updates their lines in navi_npc_krpri.lub
+wherever matches the map_name and coords
+"""
 
 import re
 import os
 import random
 import sqlite3
 
-NPC_match = '^[\w\d_]+,\d+,\d+,\d+\tscript\t[\w\d_ -]+#*[\w\d_ -]*\t[\d,{]+$'
+NPC_match = r'^[\w\d_]+,\d+,\d+,\d+\tscript\t[\w\d_ -]+#*[\w\d_ -]*\t[\d,{]+$'
 allfiles = []
 log = open('result.log', 'w', errors='ignore')
 conn = sqlite3.connect('db.sqlite')
