@@ -16,7 +16,7 @@ For any bugs/feedback please contact me: vakhet@gmail.com
 
 from shutil import copy
 from os import path, walk, remove
-from re import compile, search, findall
+from re import compile, findall
 # import cchardet
 
 # Setup
