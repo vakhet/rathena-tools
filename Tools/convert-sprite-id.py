@@ -17,11 +17,11 @@ For any bugs/feedback please contact me: vakhet@gmail.com
 from shutil import copy
 from os import path, walk, remove
 from re import compile, search, findall
-import cchardet
+# import cchardet
 
 # Setup
-
-PATTERN = compile(r'^[\w\d_]+[0-9,]+\tscript\t[\w\d_ -]+#*[\w\d_ :-]*\t([A-Z0-9_]+)[\d,{]*$')
+PATTERN = compile(r'^[\w\d_]+[0-9,]+\tscript\t[\w\d_ -]+'
+                  r'#*[\w\d_ :-]*\t([A-Z0-9_]+)[\d,{]*$')
 CONSTANT = {}
 CONSTANT_FILE = 'npc_sprite_name_id_list.txt'
 SCRIPT_PATH = ['../npc', ]
@@ -52,24 +52,31 @@ def grab_files():
     return result
 
 
+"""Disable encoding guessing
 def get_encoding(file):
-    """
+    '
     Try to guess file encoding
 
     :param file: str
     :return: (str, str)
-    """
+    '
     with open(file, 'r+b') as fh:
         result = cchardet.detect(fh.read())
     return result['encoding'], result['confidence']
+"""
 
 
 def process_line(line):
-    test = search(PATTERN, line)
-    if (test is None) or (test[1] not in CONSTANT.keys()):
+    # test = search(PATTERN, line)
+    test = findall(r'\t([A-Z0-9_]+)', line)
+    if (not test) or \
+            not any([a == b for a in test for b in CONSTANT.keys()]):
         return line, False
     else:
-        old_const = test[1]
+        for t in test:
+            if t in CONSTANT.keys():
+                old_const = t
+                break
         pos = line.rfind(old_const)
         new_line = line[:pos] + CONSTANT[old_const] + line[pos+len(old_const):]
         return new_line, True
@@ -88,13 +95,14 @@ def process(original, backup, encoding):
 
 
 def main():
-    npc_files = grab_files()
+    # npc_files = grab_files()
+    npc_files = ['GeffenMagicTournament.txt', ]
     grab_constants('npc_sprite_name_id_list.txt')
     for file in npc_files:
         print('Processing file:', file)
         original, backup = file, file + '.bak'
-        encoding, confidence = get_encoding(file)
-        encoding = 'utf-8' if confidence < 0.5 else encoding
+        # encoding, confidence = get_encoding(file)
+        encoding = 'utf-8'  # if confidence < 0.5 else encoding
         copy(original, backup)
         count = process(original, backup, encoding)
         if count == 0:
