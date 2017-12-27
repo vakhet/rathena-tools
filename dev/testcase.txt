@@ -1,0 +1,399 @@
+tbl = {
+	[501] = {unidentifiedDisplayName = "Красное зелье.",unidentifiedResourceName = "»Ў°ЈЖчјЗ",unidentifiedDescriptionName = {"Зелье, восстанавливающее ^000088около 45 HP^000000, изготовлено из красной травы.","^ffffff_^000000","Вес:^006600 7^000000"},identifiedDisplayName = "Красное зелье",identifiedResourceName = "»Ў°ЈЖчјЗ",identifiedDescriptionName = {"Зелье, восстанавливающее ^000088около 45 HP^000000, изготовлено из красной травы.","^ffffff_^000000",	"Вес:^006600 7^000000"},slotCount = 0,ClassNum = 0},
+	[502] = {
+		unidentifiedDisplayName = "Оранжевое зелье.",
+		unidentifiedResourceName = "БЦИ«ЖчјЗ",
+		unidentifiedDescriptionName = {
+			"Зелье, восстанавливающее ^000088около 105 HP^000000, изготовлено из красной и желтой травы.",
+			"^ffffff_^000000",
+			"Вес:^006600 10^000000"
+		},
+		identifiedDisplayName = "Оранжевое зелье",
+		identifiedResourceName = "БЦИ«ЖчјЗ",
+		identifiedDescriptionName = {
+			"Зелье, восстанавливающее ^000088около 105 HP^000000, изготовлено из красной и желтой травы.",
+			"^ffffff_^000000",
+			"Вес:^006600 10^000000"
+		},
+		slotCount = 0,
+		ClassNum = 0
+	},
+	[503] = {
+		unidentifiedDisplayName = "Желтое зелье.",
+		unidentifiedResourceName = "іл¶хЖчјЗ",
+		unidentifiedDescriptionName = {
+			"Зелье, восстанавливающее ^000088около 175 HP^000000, изготовлено из желтой травы.",
+			"^ffffff_^000000",
+			"Вес:^006600 13^000000"
+		},
+		identifiedDisplayName = "Желтое зелье",
+		identifiedResourceName = "іл¶хЖчјЗ",
+		identifiedDescriptionName = {
+			"Зелье, восстанавливающее ^000088около 175 HP^000000, изготовлено из желтой травы.",
+			"^ffffff_^000000",
+			"Вес:^006600 13^000000"
+		},
+		slotCount = 0,
+		ClassNum = 0
+	},
+	[504] = {
+		unidentifiedDisplayName = "Белое зелье.",
+		unidentifiedResourceName = "ЗПѕбЖчјЗ",
+		unidentifiedDescriptionName = {
+			"Зелье, восстанавливающее ^000088около 325 HP^000000, изготовлено из белой травы.",
+			"^ffffff_^000000",
+			"Вес:^006600 15^000000"
+		},
+		identifiedDisplayName = "Белое зелье",
+		identifiedResourceName = "ЗПѕбЖчјЗ",
+		identifiedDescriptionName = {
+			"Зелье, восстанавливающее ^000088около 325 HP^000000, изготовлено из белой травы.",
+			"^ffffff_^000000",
+			"Вес:^006600 15^000000"
+		},
+		slotCount = 0,
+		ClassNum = 0
+	},
+	[505] = {
+		unidentifiedDisplayName = "Синее зелье.",
+		unidentifiedResourceName = "ЖД¶хЖчјЗ",
+		unidentifiedDescriptionName = {
+			"Зелье, восстанавливающее ^000088около 60 SP^000000, изготовлено из синей травы.",
+			"^ffffff_^000000",
+			"Вес:^006600 15^000000"
+		},
+		identifiedDisplayName = "Синее зелье",
+		identifiedResourceName = "ЖД¶хЖчјЗ",
+		identifiedDescriptionName = {
+			"Зелье, восстанавливающее ^000088около 60 SP^000000, изготовлено из синей травы.",
+			"^ffffff_^000000",
+			"Вес:^006600 15^000000"
+		},
+		slotCount = 0,
+		ClassNum = 0
+	},
+	[506] = {
+		unidentifiedDisplayName = "Зеленое зелье.",
+		unidentifiedResourceName = "ГК·ПЖчјЗ",
+		unidentifiedDescriptionName = {
+			"Зелье из зеленой травы, лечит от ^000088Яда^000000, ^000088Молчания^000000, ^000088Слепоты^000000 и ^000088Хаоса^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 7^000000"
+            "Скрипт: Игнорирует защиту монстров расы зверь. Добавляет шанс .... "
+		},
+		identifiedDisplayName = "Зеленое зелье",
+		identifiedResourceName = "ГК·ПЖчјЗ",
+		identifiedDescriptionName = {
+			"Зелье из зеленой травы, лечит от ^000088Яда^000000, ^000088Молчания^000000, ^000088Слепоты^000000 и ^000088Хаоса^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 7^000000"
+		},
+		slotCount = 0,
+		ClassNum = 0
+	},
+	[507] = {
+		unidentifiedDisplayName = "Красная трава",
+		unidentifiedResourceName = "»Ў°ЈЗгєк",
+		unidentifiedDescriptionName = {
+			"Лекарственная трава, восстанавливает ^000088немного HP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 3^000000"
+		},
+		identifiedDisplayName = "Красная трава",
+		identifiedResourceName = "»Ў°ЈЗгєк",
+		identifiedDescriptionName = {
+			"Лекарственная трава, восстанавливает ^000088немного HP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 3^000000"
+		},
+		slotCount = 0,
+		ClassNum = 0
+	},
+	[508] = {
+		unidentifiedDisplayName = "Желтая трава",
+		unidentifiedResourceName = "іл¶хЗгєк",
+		unidentifiedDescriptionName = {
+			"Очень полезная трава, восстанавливает ^000088немного HP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 5^000000"
+		},
+		identifiedDisplayName = "Желтая трава",
+		identifiedResourceName = "іл¶хЗгєк",
+		identifiedDescriptionName = {
+			"Очень полезная трава, восстанавливает ^000088немного HP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 5^000000"
+		},
+		slotCount = 0,
+		ClassNum = 0
+	},
+	[509] = {
+		unidentifiedDisplayName = "Белая трава",
+		unidentifiedResourceName = "ЗПѕбЗгєк",
+		unidentifiedDescriptionName = {
+			"Трава, обладающая необычайно сильными лекарственными свойствами, восстанавливает ^000088немного HP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 7^000000"
+		},
+		identifiedDisplayName = "Белая трава",
+		identifiedResourceName = "ЗПѕбЗгєк",
+		identifiedDescriptionName = {
+			"Трава, обладающая необычайно сильными лекарственными свойствами, восстанавливает ^000088немного HP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 7^000000"
+		},
+		slotCount = 0,
+		ClassNum = 0
+	},
+	[510] = {
+		unidentifiedDisplayName = "Синяя трава",
+		unidentifiedResourceName = "ЖД¶хЗгєк",
+		unidentifiedDescriptionName = {
+			"Очень ценная трава, запах которой придает ясность мысли, восстанавливает ^000088немного SP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 7^000000"
+		},
+		identifiedDisplayName = "Синяя трава",
+		identifiedResourceName = "ЖД¶хЗгєк",
+		identifiedDescriptionName = {
+			"Очень ценная трава, запах которой придает ясность мысли, восстанавливает ^000088немного SP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 7^000000"
+		},
+		slotCount = 0,
+		ClassNum = 0
+	},
+	[511] = {
+		unidentifiedDisplayName = "Зеленая трава",
+		unidentifiedResourceName = "ГК·ПЗгєк",
+		unidentifiedDescriptionName = {
+			"Трава-противоядие, лечит от любого ^000088Яда^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 3^000000"
+		},
+		identifiedDisplayName = "Зеленая трава",
+		identifiedResourceName = "ГК·ПЗгєк",
+		identifiedDescriptionName = {
+			"Трава-противоядие, лечит от любого ^000088Яда^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 3^000000"
+		},
+		slotCount = 0,
+		ClassNum = 0
+	},
+	[512] = {
+		unidentifiedDisplayName = "Яблоко",
+		unidentifiedResourceName = "»з°ъ",
+		unidentifiedDescriptionName = {
+			"Сладкий фрукт с приятным запахом, восстанавливает ^000088немного HP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 2^000000"
+		},
+		identifiedDisplayName = "Яблоко",
+		identifiedResourceName = "»з°ъ",
+		identifiedDescriptionName = {
+			"Сладкий фрукт с приятным запахом, восстанавливает ^000088немного HP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 2^000000"
+		},
+		slotCount = 0,
+		ClassNum = 0
+	},
+	[513] = {
+		unidentifiedDisplayName = "Банан",
+		unidentifiedResourceName = "№ЩіЄіЄ",
+		unidentifiedDescriptionName = {
+			"Сладкий и вкусный тропический фрукт, восстанавливает ^000088немного HP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 2^000000"
+		},
+		identifiedDisplayName = "Банан",
+		identifiedResourceName = "№ЩіЄіЄ",
+		identifiedDescriptionName = {
+			"Сладкий и вкусный тропический фрукт, восстанавливает ^000088немного HP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 2^000000"
+		},
+		slotCount = 0,
+		ClassNum = 0
+	},
+	[514] = {
+		unidentifiedDisplayName = "Виноград",
+		unidentifiedResourceName = "Жчµµ",
+		unidentifiedDescriptionName = {
+			"Вкусный кисловатый фрукт, восстанавливает ^000088немного SP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 2^000000"
+		},
+		identifiedDisplayName = "Виноград",
+		identifiedResourceName = "Жчµµ",
+		identifiedDescriptionName = {
+			"Вкусный кисловатый фрукт, восстанавливает ^000088немного SP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 2^000000"
+		},
+		slotCount = 0,
+		ClassNum = 0
+	},
+	[515] = {
+		unidentifiedDisplayName = "Морковь",
+		unidentifiedResourceName = "ґз±Щ",
+		unidentifiedDescriptionName = {
+			"Красный овощ. Благодаря сладковатому вкусу и приятному запаху часто используется для салатов. Восстанавливает ^000088немного HP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 2^000000"
+		},
+		identifiedDisplayName = "Морковь",
+		identifiedResourceName = "ґз±Щ",
+		identifiedDescriptionName = {
+			"Красный овощ. Благодаря сладковатому вкусу и приятному запаху часто используется для салатов. Восстанавливает ^000088немного HP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 2^000000"
+		},
+		slotCount = 0,
+		ClassNum = 0
+	},
+	[516] = {
+		unidentifiedDisplayName = "Батат",
+		unidentifiedResourceName = "°н±ёё¶",
+		unidentifiedDescriptionName = {
+			"Фиолетовый корнеплод. Сладкий корнеплод с высоким содержанием крахмала. Восстанавливает ^000088немного HP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 2^000000"
+		},
+		identifiedDisplayName = "Батат",
+		identifiedResourceName = "°н±ёё¶",
+		identifiedDescriptionName = {
+			"Фиолетовый корнеплод. Сладкий корнеплод с высоким содержанием крахмала. Восстанавливает ^000088немного HP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 2^000000"
+		},
+		slotCount = 0,
+		ClassNum = 0
+	},
+	[517] = {
+		unidentifiedDisplayName = "Мясо",
+		unidentifiedResourceName = "°н±в",
+		unidentifiedDescriptionName = {
+			"Хорошо прожаренное мясо. Вкусное. Восстанавливает ^000088немного HP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 15^000000"
+		},
+		identifiedDisplayName = "Мясо",
+		identifiedResourceName = "°н±в",
+		identifiedDescriptionName = {
+			"Хорошо прожаренное мясо. Вкусное. Восстанавливает ^000088немного HP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 15^000000"
+		},
+		slotCount = 0,
+		ClassNum = 0
+	},
+	[518] = {
+		unidentifiedDisplayName = "Мед",
+		unidentifiedResourceName = "ІЬ",
+		unidentifiedDescriptionName = {
+			"Сладкая липкая масса. Очень богата питательными веществами. Восстанавливает ^000088немного HP и SP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 10^000000"
+		},
+		identifiedDisplayName = "Мед",
+		identifiedResourceName = "ІЬ",
+		identifiedDescriptionName = {
+			"Сладкая липкая масса. Очень богата питательными веществами. Восстанавливает ^000088немного HP и SP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 10^000000"
+		},
+		slotCount = 0,
+		ClassNum = 0
+	},
+	[519] = {
+		unidentifiedDisplayName = "Молоко",
+		unidentifiedResourceName = "їмАЇ",
+		unidentifiedDescriptionName = {
+			"Коровье молоко. Содержит полезные бактерии и питательные вещества. Восстанавливает ^000088немного HP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 3^000000"
+		},
+		identifiedDisplayName = "Молоко",
+		identifiedResourceName = "їмАЇ",
+		identifiedDescriptionName = {
+			"Коровье молоко. Содержит полезные бактерии и питательные вещества. Восстанавливает ^000088немного HP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 3^000000"
+		},
+		slotCount = 0,
+		ClassNum = 0
+	},
+	[520] = {
+		unidentifiedDisplayName = "Лист хиналле",
+		unidentifiedResourceName = "ИчіЄ·№АЗАЩ»з±Н",
+		unidentifiedDescriptionName = {
+			"Лист цветка Хиналле. Лист, обладающий приятным мятным вкусом. Снимает боль и восстанавливает ^000088средний объем HP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 1^000000"
+		},
+		identifiedDisplayName = "Лист хиналле",
+		identifiedResourceName = "ИчіЄ·№АЗАЩ»з±Н",
+		identifiedDescriptionName = {
+			"Лист цветка Хиналле. Лист, обладающий приятным мятным вкусом. Снимает боль и восстанавливает ^000088средний объем HP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 1^000000"
+		},
+		slotCount = 0,
+		ClassNum = 0
+	},
+	[521] = {
+		unidentifiedDisplayName = "Лист алоэ",
+		unidentifiedResourceName = "ѕЛ·ОїЎАЩ»з±Н",
+		unidentifiedDescriptionName = {
+			"Лист алоэ, прикладывается к больному месту, восстанавливает ^000088средний объем HP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 2^000000"
+		},
+		identifiedDisplayName = "Лист алоэ",
+		identifiedResourceName = "ѕЛ·ОїЎАЩ»з±Н",
+		identifiedDescriptionName = {
+			"Лист алоэ, прикладывается к больному месту, восстанавливает ^000088средний объем HP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 2^000000"
+		},
+		slotCount = 0,
+		ClassNum = 0
+	},
+	[522] = {
+		unidentifiedDisplayName = "Фрукт мастелы",
+		unidentifiedResourceName = "ё¶ЅєЕЧ¶уАЗї­ёЕ",
+		unidentifiedDescriptionName = {
+			"Спелый фрукт дерева Мастелы. Фиолетового цвета с приятным вкусом. Восстанавливает ^000088большое количество HP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 3^000000"
+		},
+		identifiedDisplayName = "Фрукт мастелы",
+		identifiedResourceName = "ё¶ЅєЕЧ¶уАЗї­ёЕ",
+		identifiedDescriptionName = {
+			"Спелый фрукт дерева Мастелы. Фиолетового цвета с приятным вкусом. Восстанавливает ^000088большое количество HP^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 3^000000"
+		},
+		slotCount = 0,
+		ClassNum = 0
+	},
+	[523] = {
+		unidentifiedDisplayName = "Святая вода",
+		unidentifiedResourceName = "јєјц",
+		unidentifiedDescriptionName = {
+			"Святая вода. Снимает ^000088Проклятие^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 3^000000"
+		},
+		identifiedDisplayName = "Святая вода",
+		identifiedResourceName = "јєјц",
+		identifiedDescriptionName = {
+			"Святая вода. Снимает ^000088Проклятие^000000.",
+			"^ffffff_^000000",
+			"Вес:^006600 3^000000"
+		},
+		slotCount = 0,
+		ClassNum = 0
+	},

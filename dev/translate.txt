@@ -1,0 +1,509 @@
+# ==================================================
+# = Script commands Translation project	
+# ==================================================
+# 
+# = Покрась:	<sk> в ^000033 ^000000 
+#	числа в ^000033 ^000000 
+#	<t> в ^000033 ^000000
+# 
+# = Игнорируй команды: specialeffect, specialeffect2
+#
+# = Если увидишь что-то, что не учтено здесь, выводи как есть
+# 
+# ==================================================
+#
+# обозначение> +/-? куда ссылается
+#
+# n	true	-
+# x	true	-
+# t	false	- #t' = t/1000, If t'<60, <t'> сек. Elif t'<3600, <t'> мин.
+# sk	false	db/re/skill_db.txt
+# mid false	db/re/mob_db.txt
+# w	false	doc/item_db.txt #HOW
+# y	false	-
+
+# Status effect (eff)
+
+sc_end	Снимает
+
+[variable]
+Eff_Bleeding	^800000Кровотечение^000000
+Eff_Blind	^333333Слепота^000000
+Eff_Burning	^ff3300Горение^000000
+Eff_Confusion	^333333Дезориентация^000000
+Eff_Crystalize	^33ccccКристаллизация^000000
+Eff_Curse	^800000Проклятие^000000
+Eff_DPoison	^330033Яд^000000
+Eff_Fear	^333333Страх^000000
+Eff_Freeze	^33ccccЗаморозка^000000
+Eff_Poison	^660033Яд^000000
+Eff_Silence	^333333Тишина^000000
+Eff_Sleep	^333333Сон^000000
+Eff_Stone	^993300Окаменение^000000
+Eff_Stun	^333333Оглушение^000000
+
+# Element (e)
+Ele_Dark	^260d0dТьма^000000
+Ele_Earth	^667711Земля^000000
+Ele_Fire	^990000Огонь^000000
+Ele_Ghost	^333333Призрак^000000
+Ele_Holy	^ffffccСвященный^000000
+Ele_Neutral	^333333Нейтральный^000000
+Ele_Poison	^660033Яд^000000
+Ele_Undead	^0f0f0aНежить^000000
+Ele_Water	^224477Вода^000000
+Ele_Wind	^666600Ветер^000000
+Ele_All	все стихии
+
+# Race (r)
+RC_Angel	Ангел
+RC_Brute	Зверь
+RC_DemiHuman	Гуманоид
+RC_Demon	Демон
+RC_Dragon	Дракон
+RC_Fish	Рыба
+RC_Formless	Бесформенный
+RC_Insect	Насекомое
+RC_Plant	Растение
+RC_Player	Игрок
+RC_Undead	Нежить
+RC_All	Монстры всех рас
+
+# Monster Race (mr)
+RC2_Goblin	гоблин
+RC2_Kobold	кобольд
+RC2_Orc	орк
+RC2_Golem	голем
+RC2_Guardian	защитник
+RC2_Ninja	ниндзя
+
+#See 'db/(pre-)re/mob_race2_db.txt'
+
+# Class (c)
+Class_Normal	обычный
+Class_Boss	босс
+Class_Guardian	защитник
+Class_All	обычный, босс и защитник
+
+# Size (s)
+Size_Small	маленького
+Size_Medium	среднего
+Size_Large	большого
+Size_All	любого
+
+# Trigger criteria (bf)
+
+BF_SHORT	при ближних атаках	
+BF_LONG	при дальних атаках
+BF_WEAPON	при нанесении физического урона 
+BF_MAGIC	при нанесении магического урона 
+BF_MISC	при нанесении урона
+BF_NORMAL	при атаках
+BF_SKILL	при нанесении урона
+
+# Trigger criteria (atf)
+
+ATF_SELF	себе
+ATF_TARGET	цели
+ATF_SHORT	при получении ближней атаки 
+ATF_LONG	при получении дальней атаки 
+ATF_WEAPON	при получении физ.урона
+ATF_MAGIC	при получении маг.урона
+ATF_MISC	при получении урона
+
+# Food 
+
+[script]
+
+# Base stats
+
+bonus bStr,n;				Сила {0:+}
+bonus bAgi,n;				Ловкость {0:+}
+bonus bVit,n;				Живучесть {0:+}
+bonus bInt,n;				Интеллект {0:+}
+bonus bDex,n;				Сноровка {0:+}
+bonus bLuk,n;				Удача {0:+}
+bonus bAllStats,n; 			Все характеристики {0:+}
+bonus bAgiVit,n;			Ловкость {0:+}, Живучесть {0:+}
+bonus bAgiDexStr,n;			Сила {0:+}, Ловкость {0:+}, Сноровка {0:+}
+
+# HP/SP
+
+bonus bMaxHP,n;				MaxHP {0:+}
+bonus bMaxHPrate,n;			MaxHP {0:+}% 
+bonus bMaxSP,n;				MaxSP {0:+}
+bonus bMaxSPrate,n;			MaxSP {0:+}%
+
+# Atk/Def
+
+bonus bBaseAtk,n;			АТК {0:+}
+bonus bAtk,n;				ATK {0:+} 
+bonus bAtk2,n;				ATK2 {0:+}
+bonus bAtkRate,n;			АТК {0:+}%
+bonus bWeaponAtkRate,n; 	Сила атаки оружия {0:+}%
+bonus bMatk,n;				МАТК {0:+}
+bonus bMatkRate,n; 			МАТК {0:+}%
+bonus bWeaponMatkRate,n;	Сила маг.атаки оружия {0:+}%
+bonus bDef,n;				Броня {0:+}
+bonus bDefRate,n;			Броня {0:+}%
+bonus bDef2,n;				VIT based DEF {0:+}
+bonus bDef2Rate,n; 			VIT based DEF {0:+}%
+bonus bMdef,n;				Equipment MDEF {0:+}
+bonus bMdefRate,n; 			Equipment MDEF {0:+}%
+bonus bMdef2,n;				INT based MDEF {0:+}
+bonus bMdef2Rate,n;			INT based MDEF {0:+}%
+
+#Additional stats
+
+bonus bHit,n;				Меткость {0:+}
+bonus bHitRate,n;			Меткость {0:+}%
+bonus bCritical,n;			Вероятность критического попадания {0:+}
+bonus bCriticalLong,n;		Вероятность критического попадания дальней атакой {0:+} (не отобразится в окне характеристик)
+bonus2 bCriticalAddRace,r,n;	Вероятность критического попадания по целям расы {0} {1:+}
+bonus bCriticalRate,n;		Вероятность критического попадания {0:+}%
+bonus bFlee,n;				Уворот {0:+}
+bonus bFleeRate,n;			Уворот {0:+}%
+bonus bFlee2,n;				Идеальный уворот {0:+}
+bonus bFlee2Rate,n;			Идеальный уворот {0:+}%
+bonus bPerfectHitRate,n;	{0:+}% неизбежного попадания
+bonus bPerfectHitAddRate,n;	{0:+}% неизбежного попадания
+bonus bSpeedRate,n;			Скорость перемещения {0:+}%
+bonus bSpeedAddRate,n;		Скорость перемещения {0:+}%
+bonus bAspd,n;				Скорость атаки {0:+}
+bonus bAspdRate,n;			Скорость атаки {0:+}%
+bonus bAtkRange,n;			Дальность атаки {0:+}
+bonus bAddMaxWeight,n;		Максимальный переносимый вес {0:+} * 0.1
+
+
+# HP/SP
+
+bonus bHPrecovRate,n;		Восстановление здоровья {0:+}%
+bonus bSPrecovRate,n;		Восстановление душевных сил {0:+}%
+bonus2 bHPRegenRate,n,t;	Восстановление здоровья {0:+} каждые {1} мс
+bonus2 bHPLossRate,n,t; 	Потеря здоровья {0:+} каждые {1} мс
+bonus2 bSPRegenRate,n,t;	Восстановление душевных сил {0:+} каждые {1} мс
+bonus2 bSPLossRate,n,t; 	Потеря душевных сил {0:+} каждые {1} мс
+bonus2 bRegenPercentHP,n,t;	Восстановление {0:+}% здоровья каждые {1} мс
+bonus2 bRegenPercentSP,n,t;	Восстановление {0:+}% душевных сил каждые {1} мс
+#bonus bNoRegen,x;			if x == 1, Здоровье не восстанавливается естественным путём
+	x == 2, Душевные силы не восстанавливаются естественным путём
+
+bonus bUseSPrate,n;		{0:+}% к потреблению душевных сил
+bonus2 bSkillUseSP,sk,n;	{1:+} к потреблению душевных сил умением {0}
+bonus2 bSkillUseSPrate,sk,n;	{1:+}% к потреблению душевных сил умением {0}
+
+# Atk/Def
+
+bonus2 bSkillAtk,sk,n;			Урон от умения {0} {1:+}%
+bonus bLongAtkRate,n;			Урон от дальних атак {0:+}%
+bonus bCritAtkRate,n;			Критический урон {0:+}%
+bonus bCriticalDef,n;			Защищённость от критических попаданий {0:+}%
+bonus2 bWeaponAtk,w,n;			{1:+} ATK с оружием типа {0}
+bonus2 bWeaponDamageRate,w,n;	{1:+}% урона с оружием типа {0}
+
+bonus bNearAtkDef,n; 			Сопротивляемость ближним физическим атакам {0:+}% 
+bonus bLongAtkDef,n; 			Сопротивляемость дальним физическим атакам {0:+}% 
+bonus bMagicAtkDef,n;			Сопротивляемость ближним магическим атакам {0:+}% 
+bonus bMiscAtkDef,n; 			Сопротивляемость прочим атакам {0:+}% 
+
+bonus bNoWeaponDamage,n;		Сопротивляемость физическому урону {0:+}% 
+bonus bNoMagicDamage,n; 		Сопротивляемость магическим воздействиям {0:+}% 
+bonus bNoMiscDamage,n;			Сопротивляемость иным видам урона {0:+}%
+
+# Healing
+
+bonus bHealPower,n;				Сила исходящего лечения {0:+}%
+bonus bHealPower2,n;				Сила входящего лечения {0:+}%
+bonus2 bSkillHeal,sk,n;				Сила лечения умением {0} {1:+}%
+bonus2 bSkillHeal2,sk,n; 			Сила лечения от умения {0} {1:+}%
+bonus bAddItemHealRate,n;			Эффективность лечебных препаратов {0:+}%
+bonus2 bAddItemHealRate,iid,n;		Эффективность предметов {0} {1:+}%
+bonus2 bAddItemGroupHealRate,ig,n;	Эффективность группы предметов {0} {1:+}%
+
+# Cast time/delay
+
+bonus bCastrate,n;			Скорость подготовки заклинаний {0:+}
+bonus2 bCastrate,sk,n;			Скорость подготовки умения {0} {1:+}
+
+bonus bFixedCastrate,n;			Фиксированное время подготовки заклинаний {0}%
+bonus2 bFixedCastrate,sk,n;			Фиксированное время подготовки умения {0} {1)%
+bonus bVariableCastrate,n;			Время подготовки заклинаний {0}%
+bonus2 bVariableCastrate,sk,n; 		Время подготовки умения {0} {1:+}%
+#во всех подобных случаях умени<j>, где j = я или й в зав.от кол-ва подобных св-в
+
+bonus bFixedCast,t;			Фиксированное время подготовки заклинаний {0} мс
+bonus2 bSkillFixedCast,sk,t;			Фиксированное время подготовки умения {0} {1} мс
+bonus bVariableCast,t;			Время подготовки заклинаний {0} мс
+bonus2 bSkillVariableCast,sk,t;		Время подготовки умения {0} {1} мс
+
+bonus bNoCastCancel,n; 				Нельзя прервать заклинание (кроме зон войн гильдий)
+bonus bNoCastCancel2,n;				Нельзя прервать заклинание (даже в зонах войн гильдий)
+
+bonus bDelayrate,n;				Задержка после умений {0}%
+bonus2 bSkillCooldown,sk,t;			Задержка использования умения {0} {1} мс
+
+
+# Damage modifiers
+bonus2 bAddEle,e,x;			{1:+}% к физическому урону по противникам стихии {0}
+bonus3 bAddEle,e,x,bf;			{1:+}% к физическому урону по противникам стихии {0} {2}
+bonus2 bMagicAddEle,e,x;			{1:+}% к магическому урону по противникам стихии {0}
+bonus2 bSubEle,e,x;			{1:+}% к сопротивлению урону от стихии {0}
+bonus3 bSubEle,e,x,bf;			{1:+}% к сопротивлению урону от стихии {0} {2}
+bonus2 bSubDefEle,e,x;			{1:+}% к сопротивлению атакам противников стихии {0}
+
+bonus2 bAddRace,r,x;			{0} получают от вас на {1}% больше физического урона 
+bonus2 bMagicAddRace,r,x; 		{0} получают от вас на {1}% больше магического урона 
+bonus2 bSubRace,r,x;			{0} наносят вам на {1}% меньше урона 
+
+bonus2 bAddClass,c,x;			{1:+}% к физическому урону по противникам класса {0}
+bonus2 bMagicAddClass,c,x;		{1:+}% к магическому урону по противникам класса {0}
+bonus2 bSubClass,c,x;			{1:+}% к сопротивляемости от противников класса {0}
+
+bonus2 bAddSize,s,x;			{1:+}% к физическому урону по противникам {0} размера
+bonus2 bMagicAddSize,s,x; 		{1:+}% к магическому урону по противникам {0} размера
+bonus2 bSubSize,s,x;			{1:+}% к сопротивляемости противникам {0} размера
+bonus bNoSizeFix,n;			Игнорирует категорию размера противника
+
+bonus2 bAddDamageClass,mid,x;		{1:+}% к физическому урону против {0}
+bonus2 bAddMagicDamageClass,mid,x;	{1:+}% к магическому урону против {0}
+
+bonus2 bAddDefMonster,mid,x;		{1:+}% к физическому урону против {0}
+bonus2 bAddMDefMonster,mid,x;		{1:+}% магическому урону против {0}
+
+bonus2 bAddRace2,mr,x;			{1:+}% к урону против расы {0}
+bonus2 bSubRace2,mr,x;			{1:+}% к сопротивляемости расе {0}
+bonus2 bMagicAddRace2,mr,x;		{1:+}% к магическому урону против расы {0}
+
+bonus2 bSubSkill,sk,n;			{1:+}% к сопротивляемости умению {0}
+
+bonus bAbsorbDmgMaxHP,n;		Поглощение урона {0:+}% максимального здоровья 
+
+# Atk/Def
+
+bonus bAtkEle,e;			Наделяет атаки стихией {0}
+bonus bDefEle,e;			Наделяет броню стихией {0}
+
+bonus2 bMagicAtkEle,e,x;			{1:+}% урона магией стихии {0}
+
+bonus bDefRatioAtkRace,r; 		Наносит по врагам расы {0} урон пропорционально их защите
+bonus bDefRatioAtkEle,e;			Наносит по врагам стихии {0} урон пропорционально их защите
+bonus bDefRatioAtkClass,c;		Наносит по врагам класса {0} урон пропорционально их защите
+
+#получится: 0+100, 0+1
+bonus4 bSetDefRace,r,n,t,y; 	Простые атаки по врагу расы {0} с шансом {1:+}% приравнивают его защиту к 0{3} на {2} мс
+
+#если видишь оба этих бонуса, используй это: Простые атаки по врагу расы {0} с шансом <n>% приравнивают его защиту и маг.защиту к 0<y> на <t>
+bonus4 bSetMDefRace,r,n,t,y;	Простые атаки по врагу расы {0} с шансом {1:+}% приравнивают его маг.защиту к 0{3} на {2} мс
+
+#Ignore Def
+
+bonus bIgnoreDefEle,e;				Игнорирует защиту врагов стихии {0}
+bonus bIgnoreDefRace,r; 			Игнорирует защиту врагов расы {0}
+bonus bIgnoreDefClass,c;			Полностью игнорирует защиту врагов класса {0}
+bonus bIgnoreMDefRace,r;			Полностью игнорирует маг.защиту врагов расы {0}
+bonus2 bIgnoreDefRaceRate,r,n;		Игнорирует {1:+}% защиты врагов расы {0}
+bonus2 bIgnoreMdefRaceRate,r,n; 	Игнорирует {1:+}% маг.защиты врагов расы {0}
+bonus2 bIgnoreMdefRace2Rate,mr,n; 	Игнорирует {1:+}% защиты монстров расы {0}
+bonus bIgnoreMDefEle,e; 			Полностью игнорирует маг.защиту врагов стихии {0}
+bonus2 bIgnoreDefClassRate,c,n;		Игнорирует {1:+}% защиты врагов класса {0}
+bonus2 bIgnoreMdefClassRate,c,n;	Игнорирует {1:+}% маг.защиты врагов класса {0}
+
+#Experience
+bonus2 bExpAddRace,r,x; 		{1:+}% опыта с монстров расы {0}
+bonus2 bExpAddClass,c,x;		{1:+}% опыта с монстров класса {0}
+
+
+bonus2 bAddEff,eff,n;				{1:+}/100% к шансу нанести {0} при атаке
+bonus2 bAddEff2,eff,n;				{1:+}/100% к шансу получить {0} при атаке
+bonus2 bAddEffWhenHit,eff,n;			{1:+}/100% к шансу нанести {0} врагу при получении урона от него
+bonus2 bResEff,eff,n;				{1:+}/100% к сопротивлению {0}
+
+#bonus3 bAddEff,eff,n,atf;			{1:+}/100% Adds a n/100% chance to cause status {0} on the target when attacking
+#bonus4 bAddEff,eff,n,atf,t;			{1:+}/100% Adds a n/100% chance to cause status {0} for {3} milliseconds on the target when attacking
+#bonus3 bAddEffWhenHit,eff,n,atf;		{1:+}/100% Adds a n/100% chance to cause status {0} on the target when being hit by physical damage
+bonus4 bAddEffWhenHit,eff,n,atf,t;		{1:+}/100% к шансу нанести {0} {2} на {3} мс
+
+bonus3 bAddEffOnSkill,sk,eff,n;		{2}/100% к шансу нанести врагу статус {1} умением {0}
+bonus4 bAddEffOnSkill,sk,eff,n,atf; 	{2}/100% к шансу нанести <atf> статус {1} умением {0}
+bonus5 bAddEffOnSkill,sk,eff,n,atf,t;	{2}/100% к шансу нанести <atf> статус {1} умением {0} на {4} мс
+
+
+bonus2 bComaClass,c,n;			Шанс любой атакой ввести противника класса {0} в кому {1:+}/100%
+bonus2 bComaRace,r,n;			Шанс любой атакой ввести противника расы {0} в кому {1:+}/100%
+
+bonus2 bWeaponComaEle,e,n;			Шанс простой атакой ввести противника стихии {0} в кому {1:+}/100%
+bonus2 bWeaponComaClass,c,n;		Шанс простой атакой ввести противника класса {0} в кому {1:+}/100%
+bonus2 bWeaponComaRace,r,n; 		Шанс простой атакой ввести противника расы {0} в кому {1:+}/100%
+
+
+bonus3 bAutoSpell,sk,y,n;		{2}/10% к шансу автоиспользования умения {0} ур.{1} при атаке
+bonus3 bAutoSpellWhenHit,sk,y,n;	{2}/10% к шансу автоиспользования умения {0} ур.{1} при получении повреждений
+
+bonus4 bAutoSpell,sk,y,n,i;		{2}/10% к шансу автоиспользования умения {0} {3} при атаке
+bonus5 bAutoSpell,sk,y,n,bf,i;		{2}/10% к шансу автоиспользования умения {0} {4} {3}
+#умение БылЮ получает Бт.10Ю% шасн повлечь за собой умение БчЮ ур. БнЮ 
+
+bonus4 bAutoSpellWhenHit,sk,y,n,i;		{2}/10% к шансу автоиспользования умения {0} ур. {1} {3} при получении повреждений 
+bonus5 bAutoSpellWhenHit,sk,y,n,bf,i;	{2}/10% к шансу автоиспользования умения {0} ур. {1} {4} при получении повреждений {3}
+	#i provides additional options (bitfield):
+	&0 = на себя
+	&1 = на врага
+	&2 = ур. 1 ~ <y>
+	&3 = ур. 1 ~ <y> на врага 
+	
+bonus4 bAutoSpellOnSkill,sk,x,y,n;		{3:+}/10% к шансу автоиспользовании умения {1} ур. {2} при использовании умения {0} 
+#bonus5 bAutoSpellOnSkill,sk,x,y,n,i;	i = 1, <n/10>% к шансу автоиспользования умения {1} ур. <y> на себя при использовании умения {0}
+	i = 2, <n/10>% к шансу автоиспользования умения {1} ур. 1 ~ <y> при использовании умения {0}
+
+
+
+# HP/SP drain
+
+bonus bHPDrainValue,n;			{0} здоровья с каждой простой атакой
+bonus2 bHPDrainValueRace,r,n; 		{1:+} здоровья с каждой простой атакой по противнику расы {0}
+bonus2 bHpDrainValueClass,c,n;		{1:+} здоровья с каждой простой атакой по противнику класса {0}
+
+bonus bSPDrainValue,n;			{0} душевных сил с каждой простой атакой
+bonus2 bSPDrainValueRace,r,n; 		{1:+} душевных сил с каждой простой атакой по противнику расы {0}
+bonus2 bSpDrainValueClass,c,n;		{1:+} душевных сил с каждой простой атакой по противнику класса {0}
+
+bonus2 bHPDrainRate,x,n;		{0}/10% к шансу поглотить {1:+}% нанесённого урона в качестве здоровья
+bonus2 bSPDrainRate,x,n;		{0}/10% к шансу поглотить {1:+}% нанесённого урона в качестве душевных сил
+
+# HP/SP vanish
+
+bonus2 bHPVanishRate,x,n;		Простые атаки получают {0}/10% к шансу лишить цель {1:+}% здоровья
+bonus2 bSPVanishRate,x,n;		Простые атаки получают {0}/10% к шансу лишить цель {1:+}% душевных сил
+
+bonus3 bHPVanishRaceRate,r,x,n;		Простые атаки получают {1:+}/10% к шансу лишить {2}% здоровья цель расы {0}
+bonus3 bSPVanishRaceRate,r,x,n;		Простые атаки получают {1:+}/10% к шансу лишить {2}% душевных сил цель расы {0}
+
+bonus3 bStateNoRecoverRace,r,x,t;	Простые атаки по цели расы {0} получают {0}/100% шанс лишить её способности к восстановлению на {2} мс
+
+# HP/SP gain
+
+bonus bHPGainValue,n;			{0} здоровья при убийстве врага физической атакой
+bonus bSPGainValue,n;			{0} душевных сил при убийстве врага физической атакой
+bonus2 bSPGainRace,r,n;			{1:+} здоровья при убийстве врага расы {0} физической атакой
+bonus bMagicHPGainValue,n;		{0} здоровья при убийстве врага магической атакой
+bonus bMagicSPGainValue,n;		{0} душевных сил при убийстве врага магической атакой
+
+# Damage return
+
+bonus bShortWeaponDamageReturn,n;	Отражение {0}% урона в ближнем бою 
+bonus bLongWeaponDamageReturn,n; 	Отражение {0}% урона в дальнем бою
+bonus bMagicDamageReturn,n;		Отражение {0}% урона от целящих заклинаний
+
+# Strip/Break equipment
+
+#bonus bUnstripableWeapon,n;		Оружие нельзя снять насильно Weapon cannot be taken off via Strip skills (n is meaningless)
+#bonus bUnstripableArmor,n; 		Armor cannot be taken off via Strip skills (n is meaningless)
+#bonus bUnstripableHelm,n;			Helm cannot be taken off via Strip skills (n is meaningless)
+#bonus bUnstripableShield,n;		Shield cannot be taken off via Strip skills (n is meaningless)
+#bonus bUnstripable,n;			All equipment cannot be taken off via strip skills (n is meaningless)
+
+bonus bUnbreakableGarment,n;		Накидка не теряет прочности
+bonus bUnbreakableWeapon,n; 		Оружие не теряет прочности
+bonus bUnbreakableArmor,n;			Доспех не теряет прочности
+bonus bUnbreakableHelm,n;			Головной убор не теряет прочности
+bonus bUnbreakableShield,n; 		Щит не теряет прочности
+bonus bUnbreakableShoes,n;			Обувь не теряет прочности
+bonus bUnbreakable,n;			Reduces the break chance of all equipped equipment by {0}%
+
+bonus bBreakWeaponRate,n;		{0}/100% к шансу сломать оружие противника
+bonus bBreakArmorRate,n; 		{0}/100% к шансу сломать доспех противника
+
+# Monster drops
+
+bonus2 bDropAddRace,r,x;	{1:+}% к выпадению предметов с монстров расы {0}
+bonus2 bDropAddClass,c,x;	{1:+}% к выпадению предметов с монстров класса {0}
+
+bonus3 bAddMonsterIdDropItem,iid,mid,n;	{2}/100% к шансу получить {0} с монстра {1}
+
+bonus2 bAddMonsterDropItem,iid,n;		{1:+}/100% к шансу получить c монстров {0}
+bonus3 bAddMonsterDropItem,iid,r,n;		{2}/100% к шансу получить {0} с монстров расы {1}
+bonus3 bAddClassDropItem,iid,c,n;		{2}/100% к шансу получить {0} с монстров класса {1}
+bonus2 bAddMonsterDropItemGroup,ig,n;	{1:+}/100% к шансу получить c монстров {0}
+bonus3 bAddMonsterDropItemGroup,ig,r,n;	{2}/100% к шансу получить {0} с монстров расы {1}
+bonus3 bAddClassDropItemGroup,ig,c,n;	{2}/100% к шансу получить {0} с монстров класса {1}
+		#NOTE: If 'x' is negative value, then it's a part of formula: chance = -n * ( уровень монстра / 10 ) + 1 
+
+bonus2 bGetZenyNum,x,n;			{1:+}% получить 1 ~ {0} зени при убийстве
+bonus2 bAddGetZenyNum,x,n;		{1:+}% получить 1 ~ {0} зени при убийстве
+			#NOTE: If <n> < 0, the max zeny to gain is -x*monster level.
+
+# Misc effects
+
+bonus bDoubleRate,n;			{0}% шанс двойной атаки
+bonus bDoubleAddRate,n;			{0}% к шансу двойной атаки
+bonus bSplashRange,n;			Атаки наносят урон в радиусе {0} клеток от цели
+bonus bSplashAddRange,n;			Атаки наносят урон в радиусе {0} клеток от цели
+bonus2 bAddSkillBlow,sk,n;		Умение {0} отталкивает цель на {1:+} клеток
+bonus bNoKnockback,n;			Вас нельзя оттолкнуть
+bonus bNoGemStone,n;			Умения не требуют самоцветов
+bonus bIntravision,n;			Даёт способность видеть невидимое
+bonus bPerfectHide,n;			Вас больше не могут обнаружить детекторы
+bonus bRestartFullRecover,n;	При воскрешении вы полностью восстанавливаетесь
+bonus bClassChange,n;			Простые атаки имеют {0}/100% шанс изменить класс цели
+bonus bAddStealRate,n;			{0}/100% к успешности кражи
+bonus bNoMadoFuel,n;			Умения не требуют топлива
+
+sc_start SC_STRFOOD,t,n;	Сила {1:+} на {0} мс
+sc_start SC_AGIFOOD,t,n;	Ловкость {1:+} на {0} мс
+sc_start SC_VITFOOD,t,n;	Живучесть {1:+} на {0} мс
+sc_start SC_INTFOOD,t,n;	Интеллект {1:+} на {0} мс
+sc_start SC_DEXFOOD,t,n;	Сноровка {1:+} на {0} мс
+sc_start SC_LUKFOOD,t,n;	Удача {1:+} на {0} мс
+
+[other]
+
+Refine {
+
+
+Если видишь .@r = getrefine(), 
+	найди (.@r / k) и выведи 'За каждые k заточки:___'
+	
+	Если затем видишь if(.@r>k), выведи 'Если заточено на +<k+1>:___'
+	А если видишь if(.@r>=k), выведи 'Если заточено на +<k>:\n'
+
+	Если ничего этого не нашёл, выведи 'За каждую заточку:\n'
+	
+	
+} 
+
+Stats {
+
+if(readparam(bStr)>=n) При <n> STR:\n
+if(readparam(bAgi)>=n) При <n> AGI:\n
+if(readparam(bVit)>=n) При <n> VIT:\n
+if(readparam(bInt)>=n) При <n> INT:\n
+if(readparam(bDex)>=n) При <n> DEX:\n
+if(readparam(bLuk)>=n) При <n> LUK:\n
+
+
+}
+
+Other {
+
+skill sk,y;	Даёт использовать умение {0} ур. <y>
+<stat> ? a : b	If <stat> is True, return a; else return b
+
+}
+
+item_group { 
+
+#db/(pre-)re/item_group_db.txt and the constants in 'db/const.txt', prefixed with IG_ === is it a kind of custom thing???
+
+
+
+}
+ 
+ 
+# ==================================================
+# =
+# ToBeAdded:	.@r = getrefine()
+#	{ .@r = getrefine(); autobonus3 "{ bonus bBaseAtk,30+(.@r*10); bonus bHit,30+(.@r*10); }",200,5000,"AC_DOUBLE","{ specialeffect2 EF_ENHANCE; }"; }
+#	bonus_script "{ bonus bStr,5; }",t invoke a bonus + ' на <t>' 
+#
+ 
+ 
